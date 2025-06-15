@@ -1,0 +1,24 @@
+{
+  "name": "book-review-service",
+  "version": "1.0.0",
+  "description": "Book Review Microservice using a GraphQL API",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "keywords": [],
+  "author": "Nilesh Kalsariya",
+  "license": "ISC",
+  "scripts": {
+    "dev:api": "pnpm --filter api run dev",
+    "dev:worker": "pnpm --filter worker run dev",
+    "build": "pnpm -r run build",
+    "test": "pnpm -r run test"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.0",
+    "ts-node": "^10.9.1"
+  }
+}
