@@ -1,0 +1,9 @@
+{
+  "name": "@book-review/models",
+  "version": "1.0.0",
+  "main": "queue.ts",
+  "types": "queue.ts",
+  "dependencies": {
+    "bullmq": "^4.0.0"
+  }
+}

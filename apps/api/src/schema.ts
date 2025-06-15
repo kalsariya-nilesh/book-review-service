@@ -1,11 +1,7 @@
-import { books } from '@db';
-
+import { db } from '@book-review/db';
+import { reviewQueue } from '@book-review/models';
+import { GraphQLError } from 'graphql';
 import { createSchema } from 'graphql-yoga'
-
-type Review = {
-  bookId: string;
-  review: string;
-}
 
 export const schema = createSchema({
   typeDefs: /* GraphQL */ `
@@ -13,7 +9,12 @@ export const schema = createSchema({
       id: ID!
       title: String!
       author: String!
-      reviews: [String!]!
+      reviews: [Review!]!
+    }
+
+    type Review {
+      id: ID!
+      content: String!
     }
 
     input ReviewInput {
@@ -30,15 +31,39 @@ export const schema = createSchema({
   `,
   resolvers: {
     Query: {
-      getBooks: () => books,
+      getBooks: async () => {
+        return db.book.findMany({
+          include: { reviews: true }
+        });
+      }
     },
     Mutation: {
       addReview: async (_: any, { bookId, review }: any) => {
-        const book = books.find(b => b.id === bookId);
-        if (!book) throw new Error('Book not found');
+
+        const book = await db.book.findUnique({where: { id: bookId }});
+
+        if (!book) {
+          throw new GraphQLError('Book not found', {
+            extensions: {
+              code: 'NOT_FOUND',
+              http: { status: 404 }
+            }
+          });
+        }
+
+        await db.review.create({
+          data: {
+            content: review.content,
+            bookId
+          }
+        });
   
-        book.reviews.push(review.content);
-        return book;
+        await reviewQueue.add('processReview', { bookId });
+
+        return db.book.findUnique({
+          where: { id: bookId },
+          include: { reviews: true }
+        });
       },
     },
   },

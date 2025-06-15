@@ -1,16 +1,14 @@
 {
-  "name": "@book-review/api",
+  "name": "@book-review/worker",
   "version": "1.0.0",
   "main": "src/index.ts",
   "scripts": {
     "dev": "ts-node src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js",
-    "test": "jest"
+    "start": "node dist/index.js"
   },
   "dependencies": {
-    "graphql": "^16.11.0",
-    "graphql-yoga": "^5.13.5",
+    "bullmq": "^4.0.0",
     "@book-review/db": "workspace:*",
     "@book-review/models": "workspace:*"
   }

@@ -11,6 +11,10 @@
   "author": "Nilesh Kalsariya",
   "license": "ISC",
   "scripts": {
+    "db:generate": "pnpm --filter @book-review/db exec prisma generate",
+    "db:migrate": "pnpm --filter @book-review/db exec prisma migrate dev",
+    "db:seed": "pnpm --filter @book-review/db exec ts-node seed.ts",
+    "dev": "pnpm -r run dev",
     "dev:api": "pnpm --filter api run dev",
     "dev:worker": "pnpm --filter worker run dev",
     "build": "pnpm -r run build",
@@ -18,7 +22,10 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
-    "typescript": "^5.4.0",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "typescript": "^5.4.0"
+  },
+  "dependencies": {
+    "prisma": "^6.9.0"
   }
 }

@@ -5,3 +5,8 @@ coverage/
 pnpm-lock.yaml
 .DS_Store
 *.log
+
+# Prisma
+packages/db/prisma/dev.db
+packages/db/prisma/dev.db-journal
+packages/db/prisma/migrations/

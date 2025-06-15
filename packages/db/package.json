@@ -1,6 +1,14 @@
 {
   "name": "@book-review/db",
   "version": "1.0.0",
-  "main": "src/seed.ts",
-  "types": "src/seed.ts"
+  "main": "index.ts",
+  "types": "index.ts",
+  "dependencies": {
+    "@prisma/client": "^6.9.0"
+  },
+  "devDependencies": {
+    "prisma": "^6.9.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.4.0"
+  }
 }
