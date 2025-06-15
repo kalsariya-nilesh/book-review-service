@@ -39,9 +39,9 @@ export const schema = createSchema({
     },
     Mutation: {
       addReview: async (_: any, { bookId, review }: any) => {
-
+  
         const book = await db.book.findUnique({where: { id: bookId }});
-
+  
         if (!book) {
           throw new GraphQLError('Book not found', {
             extensions: {
@@ -50,7 +50,7 @@ export const schema = createSchema({
             }
           });
         }
-
+  
         await db.review.create({
           data: {
             content: review.content,
@@ -59,7 +59,7 @@ export const schema = createSchema({
         });
   
         await reviewQueue.add('processReview', { bookId });
-
+  
         return db.book.findUnique({
           where: { id: bookId },
           include: { reviews: true }
