@@ -1,7 +1,14 @@
 import { db } from '@book-review/db';
 import { reviewQueue } from '@book-review/models';
 import { GraphQLError } from 'graphql';
-import { createSchema } from 'graphql-yoga'
+import { createSchema } from 'graphql-yoga';
+
+type AddReviewArgs = {
+  bookId: string;
+  review: {
+    content: string;
+  };
+};
 
 export const schema = createSchema({
   typeDefs: /* GraphQL */ `
@@ -33,38 +40,38 @@ export const schema = createSchema({
     Query: {
       getBooks: async () => {
         return db.book.findMany({
-          include: { reviews: true }
+          include: { reviews: true },
         });
-      }
+      },
     },
     Mutation: {
-      addReview: async (_: any, { bookId, review }: any) => {
-  
-        const book = await db.book.findUnique({where: { id: bookId }});
-  
+      addReview: async (_: unknown, args: AddReviewArgs) => {
+        const { bookId, review } = args;
+        const book = await db.book.findUnique({ where: { id: bookId } });
+
         if (!book) {
           throw new GraphQLError('Book not found', {
             extensions: {
               code: 'NOT_FOUND',
-              http: { status: 404 }
-            }
+              http: { status: 404 },
+            },
           });
         }
-  
+
         await db.review.create({
           data: {
             content: review.content,
-            bookId
-          }
+            bookId,
+          },
         });
-  
+
         await reviewQueue.add('processReview', { bookId });
-  
+
         return db.book.findUnique({
           where: { id: bookId },
-          include: { reviews: true }
+          include: { reviews: true },
         });
       },
     },
   },
-})
+});

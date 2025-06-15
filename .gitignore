@@ -5,6 +5,8 @@ coverage/
 pnpm-lock.yaml
 .DS_Store
 *.log
+.yarn/cache
+.pnpm-store
 
 # Prisma
 packages/db/prisma/memory

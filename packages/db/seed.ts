@@ -8,7 +8,7 @@ async function seed() {
         { title: 'The White Tiger', author: 'Aravind Adiga' },
         { title: 'Five Point Someone', author: 'Chetan Bhagat' },
         { title: '"The Garden of Evening Mists"', author: 'Tan Twan Eng' },
-      ]
+      ],
     });
     console.log('📚 Seeded books.');
   }

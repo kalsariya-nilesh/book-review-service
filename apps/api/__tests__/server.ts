@@ -6,7 +6,7 @@ export function startTestServer() {
   const yoga = createYoga({ schema });
   const server = createServer(yoga);
 
-  return new Promise<{ url: string, close: () => void }>((resolve) => {
+  return new Promise<{ url: string; close: () => void }>((resolve) => {
     const listener = server.listen(0, () => {
       const port = (listener.address() as any).port;
       resolve({
