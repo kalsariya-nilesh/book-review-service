@@ -1,4 +1,4 @@
-import { books } from '@db/seed';
+import { books } from '@db';
 
 import { createSchema } from 'graphql-yoga'
 

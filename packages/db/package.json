@@ -1,6 +1,6 @@
 {
-  "name": "@db",
+  "name": "@book-review/db",
   "version": "1.0.0",
-  "main": "seed.ts",
-  "types": "seed.ts"
+  "main": "src/seed.ts",
+  "types": "src/seed.ts"
 }

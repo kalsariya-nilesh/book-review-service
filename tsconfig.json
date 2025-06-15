@@ -11,7 +11,7 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@db/*": ["packages/db/*"]
+      "@book-review/*": ["packages/*", "apps/*"]
     }
   },
   "exclude": ["node_modules", "dist"]
