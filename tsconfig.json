@@ -10,7 +10,9 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@db/*": ["packages/db/*"]
+    }
   },
   "exclude": ["node_modules", "dist"]
 }
