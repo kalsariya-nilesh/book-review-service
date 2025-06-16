@@ -80,26 +80,6 @@ docker-compose up
 
 ---
 
-### 🔨 Build the project
-
-To build the TypeScript code for production
-
-```bash
-pnpm build
-```
-
----
-
-## 🧪 Run Tests
-
-```bash
-pnpm --filter api run test
-```
-
-> Uses an isolated in-memory SQLite DB, not `dev.db`.
-
----
-
 ## 📋 Example Queries
 
 ### ✅ Get Books
@@ -129,6 +109,26 @@ mutation {
   }
 }
 ```
+
+---
+
+### 🔨 Build the project
+
+To build the TypeScript code for production
+
+```bash
+pnpm build
+```
+
+---
+
+## 🧪 Run Tests
+
+```bash
+pnpm --filter api run test
+```
+
+> Uses an isolated in-memory SQLite DB, not `dev.db`.
 
 ---
 
