@@ -61,27 +61,29 @@ pnpm db:seed             # Seed initial book data
 pnpm dev     # Run GraphQL API and background worker locally
 ```
 
-### Local with Docker:
+### Run with Docker:
+
+> ⚠️ **Note:** As we are using **Prisma with SQLite** inside Docker, background jobs (e.g., async workers) may encounter issues due to SQLite’s file-based locking.
+> 🔄 Considerd switching to **PostgreSQL** for production-like environments and stable background job processing.
+
 
 ```bash
-docker build -f Dockerfile --target api -t book-api .
-docker build -f Dockerfile --target worker -t book-worker .
+# docker build -f Dockerfile --target api -t book-api .
+# docker build -f Dockerfile --target worker -t book-worker .
 docker-compose up
 ```
 
 - GraphQL Playground: `http://localhost:4000/graphql`
 - Redis runs on port `6379` (for BullMQ)
 
+---
 
-<!-- ### Build and Run:
+### 🔨 Build the project
+
+To build the TypeScript code for production
 
 ```bash
-pnpm build     # Run GraphQL API locally
-pnpm start  # Run background worker locally
-```
-
-- GraphQL Playground: `http://localhost:4000/graphql`
-- Redis runs on port `6379` (for BullMQ) -->
+pnpm build
 
 ---
 
