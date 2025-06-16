@@ -45,6 +45,9 @@ pnpm install
 
 ### 2. Setup the database
 
+> Ensure `packages/db/.env` has:  Add commentMore actions
+> `DATABASE_URL="file:./dev.db"`
+
 ```bash
 pnpm db:generate         # Generate Prisma client
 pnpm db:migrate          # Apply schema
