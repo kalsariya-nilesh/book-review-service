@@ -1,0 +1,41 @@
+# Node dependencies
+node_modules
+**/node_modules
+.pnpm
+.pnpm-debug.log
+
+# Dependency lock files not needed after install
+#**/pnpm-lock.yaml
+
+# Build outputs
+dist
+**/dist
+
+# VCS
+.git
+.gitignore
+
+# OS/system files
+.DS_Store
+*.log
+*.swp
+*.tmp
+
+# IDE/editor configs
+.vscode
+.idea
+
+# Env and sensitive files
+.env
+.env.*
+
+# Tests and coverage
+__tests__
+coverage
+*.test.ts
+
+# Docker and Compose files not needed inside container
+docker-compose.yml
+docker-compose.*
+Dockerfile
+docker/
