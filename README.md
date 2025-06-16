@@ -84,6 +84,7 @@ To build the TypeScript code for production
 
 ```bash
 pnpm build
+```
 
 ---
 
