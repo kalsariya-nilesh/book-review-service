@@ -2,9 +2,39 @@
 
 This is a backend microservice built using GraphQL Yoga, TypeScript, Prisma (SQLite), BullMQ, and pnpm workspaces. It allows users to fetch a list of books and submit reviews. Each review is post-processed in a background queue, demonstrating async job handling.
 
+
 ---
 
-## 🚀 Setup Instructions
+## 🚀 Features
+
+- **GraphQL API**: Query and mutate book and review data.
+- **Background Processing**: Uses BullMQ and Redis for asynchronous job handling.
+- **Monorepo Structure**: Organized with `pnpm` workspaces for scalability.
+- **Containerization**: Dockerized for consistent development and deployment environments.
+- **Testing**: Includes unit tests using Jest.
+
+---
+
+## ⚠️ Prerequisites
+
+Make sure you have the following installed **before** you run the project:
+
+| Tool            | Version       | Install Link                                           |
+|---------------- |---------------|--------------------------------------------------------|
+| Node.js         | ≥ 20.x        | https://nodejs.org                                     |
+| pnpm            | ≥ 8.x         | https://pnpm.io/installation                           |
+| Docker + Compose| Latest        | https://docs.docker.com/get-docker/                    |
+| Redis           | ≥ 6.x         | https://redis.io/docs/getting-started/installation/    |
+
+To install `pnpm` globally:
+
+```bash
+npm install -g pnpm
+```
+
+---
+
+## ⚙️ Setup Instructions
 
 ### 1. Install dependencies
 
@@ -20,28 +50,38 @@ pnpm db:migrate          # Apply schema
 pnpm db:seed             # Seed initial book data
 ```
 
-> Ensure `packages/db/.env` has:  
-> `DATABASE_URL="file:./dev.db"`
-
 ---
 
 ## ▶️ Running the Service
 
+
+### Dev mode running locally:
+
+```bash
+pnpm dev     # Run GraphQL API and background worker locally
+```
+
 ### Local with Docker:
 
 ```bash
-docker-compose up --build
+docker build -f Dockerfile --target api -t book-api .
+docker build -f Dockerfile --target worker -t book-worker .
+docker-compose up
 ```
 
 - GraphQL Playground: `http://localhost:4000/graphql`
 - Redis runs on port `6379` (for BullMQ)
 
-### Dev mode without Docker:
+
+<!-- ### Build and Run:
 
 ```bash
-pnpm dev:api     # Run GraphQL API locally
-pnpm dev:worker  # Run background worker locally
+pnpm build     # Run GraphQL API locally
+pnpm start  # Run background worker locally
 ```
+
+- GraphQL Playground: `http://localhost:4000/graphql`
+- Redis runs on port `6379` (for BullMQ) -->
 
 ---
 
@@ -125,11 +165,14 @@ pnpm clean
 ## 🔮 Suggested Future Improvements
 
 - ✅ Add authentication with JWT
+- ✅ Implement full CRUD operations for books and reviews.
 - ✅ Add user ownership to reviews
 - ✅ Switch to PostgreSQL or MongoDB for persistence
 - ✅ Use Redis for caching or distributed sessions
+- ✅ Implement retry and dead-letter queue (DLQ) handling for background jobs.
 - ✅ Add pagination and filtering to queries
 - ✅ Add logging (e.g., `pino`) and monitoring (e.g., Prometheus + Grafana)
+- ✅ Deploy the service using Kubernetes or serverless platforms.
 
 ---
 
