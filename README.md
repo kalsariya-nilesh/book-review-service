@@ -72,8 +72,6 @@ pnpm dev     # Run GraphQL API and background worker locally
 
 
 ```bash
-# docker build -f Dockerfile --target api -t book-api .
-# docker build -f Dockerfile --target worker -t book-worker .
 docker-compose up
 ```
 
