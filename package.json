@@ -20,6 +20,7 @@
     "dev:api": "pnpm --filter api run dev",
     "dev:worker": "pnpm --filter worker run dev",
     "build": "pnpm -r run build",
+    "start": "pnpm -r run start",
     "test": "pnpm -r run test",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",

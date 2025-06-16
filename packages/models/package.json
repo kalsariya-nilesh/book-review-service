@@ -3,6 +3,16 @@
   "version": "1.0.0",
   "main": "queue.ts",
   "types": "queue.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/queue.js",
+      "require": "./dist/queue.js",
+      "types": "./dist/queue.d.ts"
+    }
+  },
   "dependencies": {
     "bullmq": "^4.0.0"
   }
