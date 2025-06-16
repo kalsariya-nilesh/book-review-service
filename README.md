@@ -12,6 +12,7 @@ This is a backend microservice built using GraphQL Yoga, TypeScript, Prisma (SQL
 - **Monorepo Structure**: Organized with `pnpm` workspaces for scalability.
 - **Containerization**: Dockerized for consistent development and deployment environments.
 - **Testing**: Includes unit tests using Jest.
+- **Lintin/Formatting**: Implemented ESLint and Prettier to maintain consistent code quality and formatting standards.
 
 ---
 
